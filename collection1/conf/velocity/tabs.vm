@@ -25,16 +25,6 @@
     #end
   </span>
 
-  ## GEO-Spatial / Location Based
-  #set( $selected = ($queryOpts == "spatial") )
-  <span class="tab #if($selected)selected#end">
-    #if($selected)
-      Spatial
-    #else
-      <a href="#url_for_home?&queryOpts=spatial#debug#annotate">
-        Spatial</a>
-    #end
-  </span>
 
   ## Group By Field
   #set( $selected = ($queryOpts == "group") )
