@@ -11,30 +11,20 @@
 
     <label #annTitle("Add the &group.field parameter. Multiselect is supported")>
       Group By:
-      <select id="group" name="group.field" multiple="true">
+      <select id="group" name="group.field" multiple="false">
         ## TODO: Handle multiple selects correctly
         ## TODO: fix empty / "No Group" selection
 
-        <option value=""
-          #if($groupF == '')selected="true"#end
+        <option value="host"
+          #if($groupF == 'host')selected="true"#end
         >
-          No Group
+          Host
         </option>
 
-        <option value="manu_exact"
-          #if($groupF == 'manu_exact')selected="true"#end
-        >
-          Manufacturer
-        </option>
 
-        <option value="popularity"
-          #if($groupF == 'popularity')selected="true"#end
-        >
-          Popularity
-        </option>
 
       </select>
-    </label>  
+    </label>
 
     <input type="hidden" name="group" value="true"/>
 

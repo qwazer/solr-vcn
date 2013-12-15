@@ -70,14 +70,14 @@
 </div>
 
 ## Row 2?: ID / URL
-<div>
-  Id: #field('id')
-</div>
+##<div>
+##  Id: #field('id')
+##</div>
 
 ## Resource Name
 <div>
   #if($doc.getFieldValue('resourcename'))
-    Resource name: $filename 
+    Resource name: $filename
   #elseif($url)
     URL: $url
   #end
@@ -87,18 +87,18 @@
 </div>
 
 ## Author
-#if($doc.getFieldValue('author'))
-  <div>
-    Author: #field('author')
-  </div>
-#end
+###if($doc.getFieldValue('author'))
+##  <div>
+##    Author: #field('author')
+##  </div>
+###end
 
-##  digest
-#if($doc.getFieldValue('digest'))
-  <div>
-    Digest : #field('digest')
-  </div>
-#end
+##  host
+###if($doc.getFieldValue('host'))
+##  <div>
+##    Host : #field('host')
+##  </div>
+###end
 
 
 ## Last_Modified Date

@@ -4,12 +4,12 @@
 
 <div class="result-document">
 
-  <div class="result-title">
-    <b>$grouping.key</b>
-  </div>
+##  <div class="result-title">
+##    <b>$grouping.key</b>
+##  </div>
 
   <div>
-    Total Matches in Group: $grouping.value.matches
+    Total Matches in All Group: $grouping.value.matches
   </div>
 
   <div>  ## list of groups
@@ -27,13 +27,7 @@
       >
         #foreach ($doc in $group.doclist)
           #set($docId = $doc.getFieldValue('id'))
-          #if($doc.getFieldValue('name'))
-            #parse("product_doc.vm")
-          #elseif($doc.getFieldValue('compName_s'))
-            #parse("join_doc.vm")
-          #else
             #parse("richtext_doc.vm")
-          #end
         #end
       </div>
 

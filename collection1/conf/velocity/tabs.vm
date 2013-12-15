@@ -32,7 +32,7 @@
     #if($selected)
       Group By
     #else
-      <a href="#url_for_home?#debug#annotate&queryOpts=group&group=true&group.field=manu_exact">
+      <a href="#url_for_home?#debug#annotate&queryOpts=group&group=true&group.field=host&group.main=true">
         Group By</a>
     #end
   </span>

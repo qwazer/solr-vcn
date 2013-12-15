@@ -6,6 +6,6 @@
 ## Usually rendered inside div class=error
 
 #if( $response.response.error.code )
-  <h1>ERROR $response.response.error.code</h1>
-  $response.response.error.msg
+ # <h1>ERROR $response.response.error.code</h1>
+ # $response.response.error.msg
 #end
