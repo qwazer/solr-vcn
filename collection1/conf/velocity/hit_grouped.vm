@@ -27,6 +27,17 @@
       >
         #foreach ($doc in $group.doclist)
           #set($docId = $doc.getFieldValue('id'))
+
+##          #foreach($hl in $highlighting.value)
+##            #foreach($a in $hl.value)
+                #set($docHl = $highlighting.get($docId).get("content"))
+##            #end
+##
+##          #end
+
+           ## #foreach($key in $highlighting) <pre> $key</pre> #end
+
+          ##set($docHl = $highlighting.get(0).get(0).getFieldValue('content'))
             #parse("richtext_doc.vm")
         #end
       </div>

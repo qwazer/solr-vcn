@@ -6,7 +6,9 @@
 
 #if($response.response.get('grouped'))
 
+
   #foreach($grouping in $response.response.get('grouped'))
+    #set($highlighting = $response.response.get('highlighting'))
     #parse("hit_grouped.vm")
   #end
 
