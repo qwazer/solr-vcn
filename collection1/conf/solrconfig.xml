@@ -36,6 +36,101 @@
        affect both how text is indexed and queried.
   -->
   <luceneMatchVersion>4.6</luceneMatchVersion>
+<!-- realtime-search tag
+
+        Enables realtime-seach, a very fast nrt based search. Works with both RankingAlgorithm and Lucene. Does not close the searcher object. No need for commit (enable autocommit and set to an hr or as needed). The caches are not destroyed. Please disable the queryResultsCache as needed. The visible attribute controls the max milli seconds before a newly added document becomes visble in search results. So setting this to 0 means newly added documents are visible immediatelybut can affect update performance. Setting this to about 150-200ms seems to offer the most optimum performance. The granularity attribute controls the NRT behavior. With the default granularity="request", all search components like search, faceting, highlighting, etc. will see a consistent view of the index and will all report the same of number of documents. With granularity="intrarequest", the componets may each report the most recent changes to the index.).
+
+                attributes:
+
+                        visible: numeric [ in ms. from 0 - any, default 200 ms ]
+
+                        granularity: [request | intrarequest]    ; provides a consistent view of the index across a request or make available changes as they occur with intrrequest
+
+
+
+                values:
+
+                        true	; enable realtime-search
+
+                        false	; turns off realtime-search
+
+    -->
+
+
+
+
+
+    <realtime visible="200" granularity="request">true</realtime>
+
+    <!-- library tag
+
+	Choose the library to use with Solr.
+
+
+
+		values:
+
+			rankingalgorithm	; enables rankingalgorithm library
+
+			lucene			; enables lucene library
+
+    -->
+
+    <library>rankingalgorithm</library>
+
+    <!-- RankingAlgorithm tag
+
+	RankingAlgorithm specific tags. Choose between different algorithms like SIMPLE, SIMPLE1, COMPLEX. Choose the mode for the search, DOCUMENT or PRODUCT. Choose the scan fast, medium, full.
+
+		elements:
+
+			algorithm
+
+				values:
+
+					simple	[default]
+
+					simple1
+
+					complex
+
+					complex1
+
+					complex-lsa
+			mode
+
+				values:
+
+					document [default]
+
+					product
+
+					if algorithm=complex-lsa
+						termsimilarity
+						documentsimilarity
+						termdocumentsimilarity
+			scan	[optional]
+
+				values:
+
+					fast [default]
+
+					medium
+
+					full
+
+    -->
+
+    <rankingalgorithm>
+
+    	<algorithm>simple</algorithm>
+
+        <mode>document</mode>
+
+    </rankingalgorithm>
+
+
+
 
   <!-- <lib/> directives can be used to instruct Solr to load an Jars
        identified and use them to resolve any "plugins" specified in
@@ -376,11 +471,11 @@
          'soft' commit which only ensures that changes are visible
          but does not ensure that data is synced to disk.  This is
          faster and more near-realtime friendly than a hard commit.
-      -->
 
      <autoSoftCommit> 
        <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime> 
      </autoSoftCommit>
+      -->
 
     <!-- Update Related Event Listeners
          
@@ -503,33 +598,33 @@
                the cache.  (see java.util.HashMap)
            autowarmCount - the number of entries to prepopulate from
                and old cache.  
-      -->
     <filterCache class="solr.FastLRUCache"
                  size="512"
                  initialSize="512"
                  autowarmCount="0"/>
+      -->
 
     <!-- Query Result Cache
          
          Caches results of searches - ordered lists of document ids
          (DocList) based on a query, a sort, and the range of documents requested.  
-      -->
     <queryResultCache class="solr.LRUCache"
                      size="512"
                      initialSize="512"
                      autowarmCount="0"/>
-   
+      -->
+
     <!-- Document Cache
 
          Caches Lucene Document objects (the stored fields for each
          document).  Since Lucene internal document ids are transient,
          this cache will not be autowarmed.  
-      -->
     <documentCache class="solr.LRUCache"
                    size="512"
                    initialSize="512"
                    autowarmCount="0"/>
-    
+      -->
+
     <!-- custom cache currently used by block join --> 
     <cache name="perSegFilter"
       class="solr.search.LRUCache"
