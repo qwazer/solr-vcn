@@ -20,7 +20,7 @@
     #if($selected)
       Simple
     #else
-      <a href="#url_for_home/?#debug#annotate">
+      <a href="#url_for_home/?#debug#annotate#sortAsc">
         Simple</a>
     #end
   </span>
@@ -32,7 +32,7 @@
     #if($selected)
       Group By
     #else
-      <a href="#url_for_home?#debug#annotate&queryOpts=group&group=true&group.field=host&hl=true&hl.fl=content&hl.simple.pre=<em>&hl.simple.post=<%2Fem>">
+      <a href="#url_for_home?#debug#annotate#sortAsc&queryOpts=group&group=true&group.field=host&hl=true&hl.fl=url,content&hl.simple.pre=<em>&hl.simple.post=<%2Fem>">
         Group By</a>
     #end
   </span>

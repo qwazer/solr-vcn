@@ -19,7 +19,9 @@
 
 #macro(debug)#if($request.params.get('debugQuery'))&debugQuery=true#end#end
 
-#macro(boostPrice)#if($request.params.get('bf') == 'price')&bf=price#end#end        
+#macro(boostPrice)#if($request.params.get('bf') == 'price')&bf=price#end#end
+
+#macro(sortAsc)#if($request.params.get('sort') == 'score+asc')&sort=score+asc#end#end
 
 #macro(annotate)#if($request.params.get('annotateBrowse'))&annotateBrowse=true#end#end
 

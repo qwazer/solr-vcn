@@ -6,6 +6,15 @@
 <div>
   <span>Options:</span>
 
+    #if($request.params.get('sort'))
+        <a href="#url_for_home?#q#if($list.size($request.params.getParams('fq')) > 0)&#fqs($request.params.getParams('fq'))#end">
+        disable reverse order</a>
+    #else
+        <a href="#url_for_lens&fl=*,score&sort=score+asc">
+            enable reverse order</a>
+    #end
+  -
+
   #if($request.params.get('debugQuery'))
     <a href="#url_for_home?#q#if($list.size($request.params.getParams('fq')) > 0)&#fqs($request.params.getParams('fq'))#end">
       disable debug</a>
