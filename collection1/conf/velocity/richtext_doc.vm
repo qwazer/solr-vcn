@@ -86,19 +86,15 @@
   #end
 </div>
 
-## Author
-###if($doc.getFieldValue('author'))
-##  <div>
-##    Author: #field('author')
-##  </div>
-###end
-
-##  host
-###if($doc.getFieldValue('host'))
-##  <div>
-##    Host : #field('host')
-##  </div>
-###end
+<div class="expandable_box">
+    <div class="expandable_head"><span>Saved text copy (click to expand))</span>
+    </div>
+    <div class="expandable_content">
+    <span>
+        $esc.html($doc.getFieldValues('content'))
+    </span>
+    </div>
+</div>
 
 
 ## Last_Modified Date
