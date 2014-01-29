@@ -1,0 +1,15 @@
+#**
+ *  Main entry point into the /savedcopy
+ *#
+
+
+
+<div>
+    Hello!
+    #set($docId = $request.params.get('id'))
+    $docId
+
+
+    <iframe width="100%" height="100%" frameborder="0" src="../../hbase-client/hbase-client?rawId=$docId" seamless="true" ></iframe>
+
+</div>
