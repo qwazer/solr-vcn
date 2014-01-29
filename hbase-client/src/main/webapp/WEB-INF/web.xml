@@ -4,5 +4,18 @@
 
 <web-app>
   <display-name>Hbase client Web Application</display-name>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Solr authenticated application</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>solr-user</role-name>
+        </auth-constraint>
+    </security-constraint>
 
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>UserDatabase</realm-name>
+    </login-config>
 </web-app>
