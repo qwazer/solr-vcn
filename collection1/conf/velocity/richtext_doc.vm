@@ -86,6 +86,11 @@
   #end
 </div>
 
+<div class="result-title">
+    <a href="$url_for_home/../../../hbase-client/savedCopy.jsp?rawId=$doc.getFieldValue('id')" target="_blank">
+        <b>saved copy</b></a>
+</div>
+
 <div class="expandable_box">
     <div class="expandable_head"><span>Saved text copy (click to expand))</span>
     </div>
