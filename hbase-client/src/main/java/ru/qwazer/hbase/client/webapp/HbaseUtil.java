@@ -2,18 +2,15 @@ package ru.qwazer.hbase.client.webapp;
 
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HTableDescriptor;
-import org.apache.hadoop.hbase.MasterNotRunningException;
-import org.apache.hadoop.hbase.ZooKeeperConnectionException;
-import org.apache.hadoop.hbase.avro.generated.HBase;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.util.Bytes;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,10 +76,12 @@ public class HbaseUtil {
         return list;
     }
 
+    public static InputStream findContent(String rowId) throws IOException {
+        return retriveValueAsStream(rowId, "f", "cnt");
+    }
 
-    public static String findContent(String rowId) throws IOException {
-
-        return retriveValue(rowId, "f", "cnt");
+    public static String findContentType(String rowId) throws IOException {
+        return retriveValue(rowId, "h", "Content-Type");
 
     }
 
@@ -101,6 +100,15 @@ public class HbaseUtil {
             Result result = retrieveResult(tableName, rowId, family, column);
             if (result.value() != null)
                 return Bytes.toString(result.value());
+        }
+        return null;
+    }
+
+    private static InputStream retriveValueAsStream(String rowId, String family, String column) throws IOException {
+        for (String tableName : tableNames) {
+            Result result = retrieveResult(tableName, rowId, family, column);
+            if (result.value() != null)
+                return new ByteArrayInputStream(result.value());
         }
         return null;
     }
