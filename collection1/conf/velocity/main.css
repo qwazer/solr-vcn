@@ -181,17 +181,6 @@ a {
   margin-bottom: 15px;
 }
 
-.expandable_box {
-    border: 1px solid #ddd;
-    padding: 5px;
-    margin: 5px;
-}
-
-.expandable_head {
-    background: #ddd;
-    padding: -5px;
-    margin: -5px;
-}
 
 .result-document div{
   padding: 5px;

@@ -91,16 +91,6 @@
         <b>saved copy</b></a>
 </div>
 
-<div class="expandable_box">
-    <div class="expandable_head"><span>Saved text copy (click to expand))</span>
-    </div>
-    <div class="expandable_content">
-    <span>
-        $esc.html($doc.getFieldValues('content'))
-    </span>
-    </div>
-</div>
-
 
 ## Last_Modified Date
 #if($doc.getFieldValue('last_modified'))
