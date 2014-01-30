@@ -4,6 +4,16 @@
 
 <web-app>
   <display-name>Hbase client Web Application</display-name>
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>ru.qwazer.hbase.client.webapp.Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/savedCopy</url-pattern>
+    </servlet-mapping>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Solr authenticated application</web-resource-name>

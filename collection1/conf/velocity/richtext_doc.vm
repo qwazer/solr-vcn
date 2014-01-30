@@ -87,7 +87,7 @@
 </div>
 
 <div class="result-title">
-    <a href="$url_for_home/../../../hbase-client/savedCopy.jsp?rawId=$doc.getFieldValue('id')" target="_blank">
+    <a href="$url_for_home/../../../hbase-client/savedCopy?rawId=$doc.getFieldValue('id')" target="_blank">
         <b>saved copy</b></a>
 </div>
 
