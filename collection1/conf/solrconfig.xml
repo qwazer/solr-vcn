@@ -1005,7 +1005,7 @@
        <str name="echoParams">explicit</str>
 
        <!-- VelocityResponseWriter settings -->
-       <str name="wt">velocity</str>
+       <str name="wt">velocity_ext</str>
        <str name="v.template">browse</str>
        <str name="v.layout">layout</str>
        <str name="v.properties">velocity.properties</str>
@@ -1826,6 +1826,7 @@
      Custom response writers can be declared as needed...
    -->
     <queryResponseWriter name="velocity" class="solr.VelocityResponseWriter" startup="lazy"/>
+    <queryResponseWriter name="velocity_ext" class="ru.qwazer.solr.velocity.VelocityExtResponseWriter" startup="lazy"/>
 
 
     <!--

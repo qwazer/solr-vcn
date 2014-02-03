@@ -1,5 +1,6 @@
 package ru.qwazer.hbase.client.webapp;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import javax.servlet.ServletException;
@@ -39,6 +40,17 @@ public class Servlet extends HttpServlet {
         String rawId = request.getParameter("rawId");
         if (rawId == null) {
             o.write(Bytes.toBytes("Provide rawId parameter"));
+            return;
+        }
+
+        String p = request.getParameter("p");
+        if (rawId == null) {
+            o.write(Bytes.toBytes("Provide p parameter"));
+            return;
+        }
+
+        if (!DigestUtils.md5Hex(rawId).equals(p)){
+            o.write(Bytes.toBytes("rawId don't match p parameter, do you try to access directly?"));
             return;
         }
 
