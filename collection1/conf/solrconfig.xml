@@ -1867,6 +1867,9 @@
      <valueSourceParser name="myfunc" 
                         class="com.mycompany.MyValueSourceParser" />
     -->
+
+    <valueSourceParser name="savedCopyURL"
+                       class="ru.qwazer.solr.search.SavedCopyURLFunction" />
     
   
   <!-- Document Transformers
