@@ -49,11 +49,35 @@ public class Servlet extends HttpServlet {
             return;
         }
 
-        if (!DigestUtils.md5Hex(rawId).equals(p)){
+        if (!DigestUtils.md5Hex(rawId).equals(p)) {
             o.write(Bytes.toBytes("rawId don't match p parameter, do you try to access directly?"));
             return;
         }
 
+        checkMIMEAndWriteHeader(request, response, o, rawId);
+
+        InputStream is = HbaseUtil.findContent(request.getParameter("rawId"));
+        byte[] buf = new byte[32 * 1024]; // 32k buffer
+        int nRead = 0;
+        while ((nRead = is.read(buf)) != -1) {
+            o.write(buf, 0, nRead);
+        }
+
+    }
+
+    private void checkMIMEAndWriteHeader(HttpServletRequest request, HttpServletResponse response, OutputStream o, String rawId) throws IOException {
+        if (rawId.endsWith(".pdf")) {
+            response.addHeader("Content-Type", "application/pdf");
+        } else if (rawId.endsWith(".doc") || rawId.endsWith(".docx")) {
+            response.addHeader("Content-Type", "application/msword");
+        } else if (rawId.endsWith(".xls") || rawId.endsWith(".xlsx")) {
+            response.addHeader("Content-Type", "application/vnd.ms-excel");
+        } else {
+            writeHeader(request, o);
+        }
+    }
+
+    private void writeHeader(HttpServletRequest request, OutputStream o) throws IOException {
         o.write(Bytes.toBytes(headOpen));
 
         String url = HbaseUtil.findUrl(request.getParameter("rawId"));
@@ -63,13 +87,5 @@ public class Servlet extends HttpServlet {
         String headInfo = url + "  <br/> Datetime is " + HbaseUtil.findDate(request.getParameter("rawId"));
         o.write(Bytes.toBytes(headInfo));
         o.write(Bytes.toBytes(headClose));
-
-        InputStream is = HbaseUtil.findContent(request.getParameter("rawId"));
-        byte[] buf = new byte[32 * 1024]; // 32k buffer
-        int nRead = 0;
-        while ((nRead = is.read(buf)) != -1) {
-            o.write(buf, 0, nRead);
-        }
-
     }
 }
