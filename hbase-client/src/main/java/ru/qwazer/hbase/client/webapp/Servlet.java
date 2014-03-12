@@ -72,6 +72,16 @@ public class Servlet extends HttpServlet {
             response.addHeader("Content-Type", "application/msword");
         } else if (rawId.endsWith(".xls") || rawId.endsWith(".xlsx")) {
             response.addHeader("Content-Type", "application/vnd.ms-excel");
+        } else if (rawId.endsWith(".ppt") || rawId.endsWith(".pptx")) {
+            response.addHeader("Content-Type", "application/vnd.ms-powerpoint");
+        } else if (rawId.endsWith(".rtf")) {
+            response.addHeader("Content-Type", "text/rtf");
+        } else if (rawId.endsWith(".swf")) {
+            response.addHeader("Content-Type", "application/x-shockwave-flash");
+        } else if (rawId.endsWith(".rar")) {
+            response.addHeader("Content-Type", "application/x-rar-compressed");
+        } else if (rawId.endsWith(".zip")) {
+            response.addHeader("Content-Type", "application/zip");
         } else {
             writeHeader(request, o);
         }
